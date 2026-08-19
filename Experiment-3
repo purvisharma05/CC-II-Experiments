@@ -1,0 +1,65 @@
+EXPERIMENT - 3.1 ->  Implement Queue Using Stacks (232):
+AIM: 
+Implement a first in first out (FIFO) queue using only two stacks.The implemented queue should support all the functions of a normal queue 
+(push, peek, pop, and empty).
+
+ALGORITHM:
+1. Start.
+2. Create two stacks:
+    -> stack1 for storing newly inserted elements.
+    -> stack2 for removing elements in queue order.
+3. To perform push(x):
+    -> Push the element x into stack1.
+4. To perform pop():
+    -> If stack2 is empty, transfer all elements from stack1 to stack2.
+    -> Pop the top element from stack2.
+5. To perform peek():
+    -> If stack2 is empty, transfer all elements from stack1 to stack2.
+    -> Return the top element of stack2.
+6. To perform empty():
+    -> Return true if both stack1 and stack2 are empty.
+    -> Otherwise, return false.
+7. The transfer from stack1 to stack2 reverses the order of elements, allowing the queue to follow FIFO order.
+8. Stop.
+
+CODE:
+import java.util.Stack;
+
+class MyQueue {
+    Stack<Integer> in;
+    Stack<Integer> out;
+
+    public MyQueue() {
+        in = new Stack<>();
+        out = new Stack<>();
+    }
+    public void push(int x) {
+        in.push(x);
+    }
+    public int pop() {
+        if (out.isEmpty()) {
+            while (!in.isEmpty()) {
+                out.push(in.pop());
+            }
+        }
+        return out.pop();
+    }
+    public int peek() {
+        if (out.isEmpty()) {
+            while (!in.isEmpty()) {
+                out.push(in.pop());
+            }
+        }
+        return out.peek();
+    }
+    public boolean empty() {
+        return in.isEmpty() && out.isEmpty();
+    }
+}
+
+Learning Outcomes:
+1. Understand how to implement a queue using two stacks.
+2. Learn the FIFO (First In, First Out) principle of a queue.
+3. Perform queue operations (push, pop, peek, and empty) using stacks.
+4. Analyze the time complexity of each queue operation.
+5. Understand how stack operations can be used to simulate queue behavior.
