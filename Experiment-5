@@ -1,0 +1,29 @@
+EXPERIMENT 5 – Add Digits (LeetCode 258)
+
+AIM:
+To implement an efficient algorithm to repeatedly add the digits of an integer until a single-digit result is obtained.
+
+ALGORITHM:
+i) Start the program.
+ii) Initialize the given integer num.
+iii) Repeat the process while num contains more than one digit.
+iv) Initialize sum = 0.
+v) Extract the last digit using num % 10 and add it to sum.
+vi) Remove the last digit using integer division num // 10.
+vii) Assign sum to num and repeat the process.
+viii) When num becomes a single digit, return num.
+ix) Stop the program.
+
+CODE:
+class Solution:
+    def addDigits(self, num: int) -> int:
+        while num >= 10:
+            total = 0
+
+            while num > 0:
+                total += num % 10
+                num //= 10
+
+            num = total
+
+        return num
