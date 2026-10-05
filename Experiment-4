@@ -1,0 +1,79 @@
+EXPERIMENT 4.1 – Palindrome Linked List (LeetCode 234)
+                                                      
+AIM: To implement an efficient algorithm to determine whether a singly linked list is a palindrome using O(n) time and O(1) extra space.
+
+ALGORITHM:
+i) Start the program.
+ii) Initialize two pointers, slow and fast, at the head of the linked list.
+iii) Move slow one step and fast two steps at a time to find the middle of the linked list.
+iv) Reverse the second half of the linked list.
+v) Initialize two pointers to compare the first half and the reversed second half.
+vi) Compare the values of corresponding nodes.
+vii) If any two values are different, return False.
+viii) If all corresponding values are equal, return True.
+ix) Stop the program.
+
+CODE:
+class Solution:
+    def isPalindrome(self, head: ListNode | None) -> bool:
+        # Find the middle of the linked list
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Reverse the second half
+        prev = None
+        while slow:
+            next_node = slow.next
+            slow.next = prev
+            prev = slow
+            slow = next_node
+
+        # Compare both halves
+        left = head
+        right = prev
+
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+
+        return True
+
+
+                                                   EXPERIMENT 4.2 Middle of the Linked List(876)
+
+AIM: To find and return the middle node of a singly linked list using the two-pointer (slow and fast pointer) technique with O(n) time complexity and O(1) space complexity.
+
+ALGORITHM:
+i)Start the program.
+
+ii)Initialize two pointers, slow and fast, at the head of the linked list.
+
+iii)Move slow one node and fast two nodes forward while fast and fast.next are not None.
+
+iv)When the loop ends, return the node pointed to by slow as the middle node.
+
+v))Stop the program.
+
+CODE:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def middleNode(self, head: ListNode) -> ListNode:
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
